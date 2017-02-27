@@ -1,0 +1,38 @@
+imports:
+    - { resource: repositories.yml }
+    - { resource: managers.yml }
+    - { resource: forms.yml }
+
+services:
+    app.normalizer.array_collection_normalizer:
+        class: AppBundle\Normalizer\ArrayCollectionNormalizer
+        tags:
+            - { name: serializer.normalizer }
+
+    app.normalizer.exception_normalizer:
+        class: AppBundle\Normalizer\ExceptionNormalizer
+        tags:
+            - { name: serializer.normalizer }
+
+    app.normalizer.city_normalizer:
+        class: AppBundle\Normalizer\CityNormalizer
+        tags:
+            - { name: serializer.normalizer }
+
+    app.normalizer.region_normalizer:
+        class: AppBundle\Normalizer\RegionNormalizer
+        tags:
+            - { name: serializer.normalizer }
+
+    app.normalizer.country_normalizer:
+        class: AppBundle\Normalizer\CountryNormalizer
+        tags:
+            - { name: serializer.normalizer }
+
+    app.service.google_geocoding:
+        class: AppBundle\Service\GoogleGeocoding
+        arguments:
+            - '%google_maps_api_key%'
+
+    app.service.distance_calculator:
+        class: AppBundle\Service\DistanceCalculator

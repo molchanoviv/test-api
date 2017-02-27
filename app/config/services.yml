@@ -1,0 +1,23 @@
+services:
+    doctrine.instantiator:
+        class: Doctrine\Instantiator\Instantiator
+
+    app.encoder.json:
+        class: 'Symfony\Component\Serializer\Encoder\JsonEncoder'
+
+    fos_rest.serializer.adapter.symfony_serializer:
+        class: 'FOS\RestBundle\Serializer\SymfonySerializerAdapter'
+        arguments:
+            - '@app.serializer.resources'
+
+    app.serializer.resources:
+        class: 'Symfony\Component\Serializer\Serializer'
+        arguments:
+            -
+                - '@app.normalizer.city_normalizer'
+                - '@app.normalizer.region_normalizer'
+                - '@app.normalizer.country_normalizer'
+                - '@app.normalizer.exception_normalizer'
+                - '@serializer.normalizer.object'
+            -
+                - '@app.encoder.json'

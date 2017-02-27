@@ -1,0 +1,61 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li><a href="{{ path('app_city_list') }}">{% trans %}Tools{% endtrans %}</a></li>
+            <li class="active">{% trans %}Referral Url Preview{% endtrans %}</li>
+        </ol>
+        <div class="head-content">
+            <div class="btn-group pull-right">
+                <a class="btn btn-default" href="{{ path('app_city_list') }}">
+                    <span class="glyphicon glyphicon-chevron-left"></span> {% trans %}Back to the list{% endtrans %}</a>
+                <a
+                    href="{{ path("app_city_edit", {"id" : entity.id }) }}"
+                    class="btn btn-default">
+                    <i class="glyphicon glyphicon-pencil"></i> {% trans %}Edit{% endtrans %}
+                </a>
+                <a
+                    href="{{ path("app_city_remove", {"id" : entity.id }) }}"
+                    class="btn btn-danger confirmation"
+                    data-confirm-title="{% trans %}Remove city{% endtrans %}"
+                    data-confirm-text="{% trans %}Are you sure you want to remove this city?{% endtrans %}">
+                    <i class="glyphicon glyphicon-pencil"></i> {% trans %}Remove{% endtrans %}
+                </a>
+            </div>
+            <div class="page-header">
+                <h3>{% trans %}City{% endtrans %}:</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="list-group">
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans %}Id{% endtrans %}</h4>
+                        <p class="list-group-item-text">
+                            {{ entity.id }}
+                        </p>
+                    </div>
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans %}Name{% endtrans %}</h4>
+                        <p class="list-group-item-text">
+                            {{ entity.name }}
+                        </p>
+                    </div>
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans %}Region{% endtrans %}</h4>
+                        <p class="list-group-item-text">
+                            {{ entity.region.name }}
+                        </p>
+                    </div>
+                    <div class="list-group-item">
+                        <h4 class="list-group-item-heading">{% trans %}Country{% endtrans %}</h4>
+                        <p class="list-group-item-text">
+                            {{ entity.region.country.name }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        {% block breadcrumbs %}
+            <ol class="breadcrumb">
+                <li><a href="{{ path('app_city_list') }}">{% trans %}Cities{% endtrans %}</a></li>
+                <li class="active">{% block current_breadcrumb %}{% trans %}Editing{% endtrans %}{% endblock current_breadcrumb %}</li>
+            </ol>
+        {% endblock breadcrumbs %}
+        {% block form %}
+            {{ form_start(form) }}
+            <div class="head-content">
+                <div class="page-header">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <h3>{% block title %}Edit city{% endblock title %}</h3>
+                        </div>
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-success pull-right">{% trans %}Edit{% endtrans %}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    {% block form_inputs %}
+                        {% block form_bengin %}{% endblock form_bengin %}
+                        {{ form_widget(form) }}
+                        {% block form_end %}{% endblock form_end %}
+                    {% endblock form_inputs %}
+                </div>
+            </div>
+            {{ form_end(form) }}
+        {% endblock form %}
+    </div>
+{% endblock %}

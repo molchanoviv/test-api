@@ -1,0 +1,30 @@
+services:
+    app.manager.abstract_manager:
+        class: AppBundle\Manager\AbstractManager
+        abstract: true
+        calls:
+            - [ setEntityManager, [ '@doctrine.orm.entity_manager' ] ]
+
+    app.manager.country_manager:
+        class: AppBundle\Manager\CountryManager
+        parent: app.manager.abstract_manager
+        arguments:
+            - '@app.entity_repository.country_repository'
+
+    app.manager.region_manager:
+            class: AppBundle\Manager\RegionManager
+            parent: app.manager.abstract_manager
+            arguments:
+                - '@app.entity_repository.region_repository'
+
+    app.manager.city_manager:
+        class: AppBundle\Manager\CityManager
+        parent: app.manager.abstract_manager
+        arguments:
+            - '@app.entity_repository.city_repository'
+
+    app.manager.user_manager:
+        class: AppBundle\Manager\UserManager
+        parent: app.manager.abstract_manager
+        arguments:
+            - '@app.entity_repository.user_repository'

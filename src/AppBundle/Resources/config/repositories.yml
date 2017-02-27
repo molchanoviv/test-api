@@ -1,0 +1,24 @@
+services:
+    app.entity_repository.country_repository:
+        class: AppBundle\Entity\Repository\CountryRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - "AppBundle\\Entity\\Country"
+
+    app.entity_repository.region_repository:
+            class: AppBundle\Entity\Repository\RegionRepository
+            factory: ["@doctrine", getRepository]
+            arguments:
+                - "AppBundle\\Entity\\Region"
+
+    app.entity_repository.city_repository:
+        class: AppBundle\Entity\Repository\CityRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - "AppBundle\\Entity\\City"
+
+    app.entity_repository.user_repository:
+        class: AppBundle\Entity\Repository\UserRepository
+        factory: ["@doctrine", getRepository]
+        arguments:
+            - "AppBundle\\Entity\\User"

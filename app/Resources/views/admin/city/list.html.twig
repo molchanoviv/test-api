@@ -1,0 +1,71 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <div class="container">
+        <ol class="breadcrumb">
+            <li class="active">{% trans %}Cities{% endtrans %}</li>
+        </ol>
+        <div class="btn-group pull-right">
+            <a class="btn btn-default" href="{{ path('app_city_new') }}">
+                {% trans %}Add city{% endtrans %}
+            </a>
+
+        </div>
+        <div class="head-content">
+            <div class="page-header">
+                <h3>{% trans %}Cities list{% endtrans %}</h3>
+            </div>
+        </div>
+        <table class="table table-stripped table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>{% trans %}Id{% endtrans %}</th>
+                <th>{% trans %}Name{% endtrans %}</th>
+                <th>{% trans %}Region{% endtrans %}</th>
+                <th>{% trans %}Country{% endtrans %}</th>
+                <th>{% trans %}Controls{% endtrans %}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for city in cities %}
+                <tr>
+                    <td class="col-md-1">
+                        {{ city.id }}
+                    </td>
+                    <td>
+                        {{ city.name }}
+                    </td>
+                    <td>
+                        {{ city.region.name }}
+                    </td>
+                    <td>
+                        {{ city.region.country.name }}
+                    </td>
+                    <td class="col-md-2">
+                        <a
+                            href="{{ path("app_city_show", {"id" : city.id }) }}"
+                            class="btn btn-xs btn-default"
+                            title="{% trans %}Details{% endtrans %}">
+                            <i class="glyphicon glyphicon-eye-open"></i>
+                        </a>
+                        <a
+                            href="{{ path("app_city_edit", {"id" : city.id }) }}"
+                            class="btn btn-xs btn-default"
+                            title="{% trans %}Edit{% endtrans %} {{ city.name }}">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a>
+                        <a
+                            href="{{ path("app_city_remove", {"id" : city.id }) }}"
+                            class="btn btn-xs btn-danger confirmation"
+                            data-confirm-title="{% trans %}Remove site{% endtrans %}"
+                            data-confirm-text="{% trans %}Are you sure you want to remove this city?{% endtrans %}"
+                            title="{% trans %}Remove{% endtrans %} {{ city.name }}">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

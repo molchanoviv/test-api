@@ -1,0 +1,9 @@
+{% extends "::base.html.twig" %}
+
+{% block content %}
+    <div class="container">
+        <h3>{% trans %}Account settings{% endtrans %}</h3>
+        <hr/>
+        {% include "FOSUserBundle:Profile:edit_content.html.twig" %}
+    </div>
+{% endblock content %}
